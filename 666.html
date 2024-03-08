@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referrer Tracking</title>
+</head>
+<body>
+    <h1>Welcome to My Website!</h1>
+    <script>
+        // Access the referrer information
+        var referrer = document.referrer;
+        console.log("sss",referrer);
+        // Function to extract domain from URL
+        function extractDomain(url) {
+            var domain;
+            // Find & remove protocol (http, https, ftp) and get domain
+            if (url.indexOf("://") > -1) {
+                domain = url.split('/')[2];
+            } else {
+                domain = url.split('/')[0];
+            }
+            // Find & remove www
+            domain = domain.replace("www.", "");
+            // Find & remove port number
+            domain = domain.split(':')[0];
+            return domain;
+        }
+
+        // Extract domain from referrer
+        var referringDomain = extractDomain(referrer);
+        
+        // Store the referring domain in session storage
+        sessionStorage.setItem('referringDomain', referringDomain);
+    </script>
+</body>
+</html>
